@@ -37,6 +37,10 @@ h1 {
   border: none;
   cursor: pointer;
 }
+.click {
+  margin: 0 auto;
+  text-align: center;
+}
 .con#blur.active {
   filter: blur(20px);
   pointer-events: none;
@@ -84,4 +88,50 @@ h1 {
 }
 button#close.button {
   margin-left: 90%;
+}
+
+/*form*/
+.inputQuantity {
+  color: white;
+  font-size: 20px;
+}
+
+.validation-control label {
+  display: block;
+  font-weight: bold;
+}
+.validation-control input {
+  border: 2px solid grey;
+  border-radius: 4px;
+  padding: 12px 20px;
+  width: 80%;
+}
+
+.validation-control input:focus {
+  outline: 0;
+  border-color: #104e8b;
+}
+
+.validation-control.red input {
+  border-color: red;
+}
+span.inputName {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #104e8b;
+}
+span.inputQuantity {
+  margin-right: 60px;
+  margin-left: 25px;
+  font-size: 2em;
+}
+
+#feld {
+  width: 80%;
+  position: absolute;
+  margin-left: 200px;
+  z-index: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
