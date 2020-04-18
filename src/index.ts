@@ -38,3 +38,48 @@ function redVali(input: any, message: string) {
   formControl.className = "validation-control red";
   txt.innerText = message;
 }
+// input
+
+function remInput() {
+    return (productName!.value = ""), (quantity!.value = "");
+  }
+  
+  //create element
+  function addElement() {
+    const div1 = document.createElement("div");
+    const div2 = document.createElement("div");
+    const ul = document.createElement("ul");
+    const minusBtn = document.createElement("li");
+    const plusBtn = document.createElement("li");
+    const spanName = document.createElement("span");
+    const spanQuantity = document.createElement("span");
+  
+    //add context
+    let name;
+    minusBtn.textContent = "-";
+    plusBtn.textContent = "+";
+    const getNameInput = productName!.value;
+    const getQuantitiyInput = quantity!.value;
+    spanName.textContent = getNameInput;
+    spanQuantity.textContent = getQuantitiyInput;
+  
+    //append to DOM
+    div2.appendChild(spanName);
+    div1.appendChild(div2);
+    ul.appendChild(minusBtn);
+    ul.appendChild(spanQuantity);
+    ul.appendChild(plusBtn);
+    div1.appendChild(ul);
+  
+    let inhalt = document.getElementById("feld");
+    inhalt!.appendChild(div1);
+  
+    //add class
+    div1.classList.add("container");
+    div2.classList.add("wrapper");
+    minusBtn.classList.add("minus");
+    plusBtn.classList.add("plus");
+    spanName.classList.add("inputName");
+    spanQuantity.classList.add("inputQuantity");
+  
+    remInput();
