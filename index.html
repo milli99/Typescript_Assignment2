@@ -4,8 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gefrierschrank</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div id="header">
+        <h1>Was befindet sich in meinem Gefrierschrank?</h1>
+    </div>
+    <div id="blur" class="con">
+        <div id="window">
+            <div class="click">
+                <button class="add-button">+</button>
+            </div>
+            
+            <div id="feld"></div>
+            <!--
+            <div class="container">
+                <div class="wrapper">
+                    <ul>
+                        <li class="minus"><a href="#">-</a></li>
+                        <li class="plus"><a href="#">+</a></li>
+                    </ul>
+                </div>
+            </div>
+            -->
+        </div>
+
+    </div>
+
+    <div id="windowpop">
+        <span class="close" onclick="test()">&times;</span>
+        <!--<button id="close" onclick="test()" class="button">Close</button>-->
+
+        <div class="header">
+            <h2>Was möchtest Du hinzufügen?</h2>
+        </div>
+        <form id="form">
+            <!-- name -->
+            <div class="validation-control">
+              <label class="label">Produktname</label>
+              <input type="text" id="nameInput" class="name" name="name" />
+              <span class="check"></span>
+              <p></p>
+            </div>
+    
+            <!-- quantity -->
+            <div class="validation-control">
+              <label class="label">Anzahl</label>
+              <input
+                type="quantity"
+                id="quantityInput"
+                class="quantity"
+                class="validation-control"
+                name="quantity"
+              />
+              <span class="check"></span>
+              <p></p>
+            </div>
+    
+            <!-- submit button -->
+            <div class="confirm">
+              <button type="submit" class="confirmButton">Bestätigen</button>
+            </div>
+          </form>
     <script src="./build/bundle.js"></script>
   </body>
 </html>
