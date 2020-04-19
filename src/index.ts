@@ -103,4 +103,22 @@ function addElement() {
     count += 1;
     hp.innerHTML = `${count}`;
   };
+  //Speech Synthesis
+  const message = new SpeechSynthesisUtterance(
+    "Liebe Oma in deinem Gefrierschrank befinden sich " + count + getNameInput
+  );
+  //const voices = window.speechSynthesis.getVoices();
+  message.lang = "de-DE";
+
+  const wrapper = document.querySelectorAll<HTMLElement>(".wrapper");
+  wrapper.forEach((el) => {
+    el.onclick = () => {
+      speakText();
+    };
+  });
+
+  // Speak text
+  function speakText() {
+    speechSynthesis.speak(message);
+  }
 }
