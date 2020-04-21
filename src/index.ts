@@ -38,14 +38,17 @@ function redVali(input: any, message: string) {
   formControl.className = "validation-control red";
   txt.innerText = message;
 }
-// input
+
+// remove input
 
 function remInput() {
   return (productName!.value = ""), (quantity!.value = "");
 }
 
 //create element
+let x = 0;
 function addElement() {
+  x++;
   const div1 = document.createElement("div");
   const div2 = document.createElement("div");
   const ul = document.createElement("ul");
@@ -82,43 +85,88 @@ function addElement() {
   spanName.classList.add("inputName");
   spanQuantity.classList.add("inputQuantity");
 
+  div1.setAttribute("id", `${x}`);
+  minusBtn.addEventListener("click", countdownMinus);
+
+  plusBtn.addEventListener("click", countupPlus);
+
   remInput();
+}
 
-  // counter
-  const hp = spanQuantity;
+// counter
 
-  const countdown = document.querySelector<HTMLElement>(".minus");
-  countdown!.onclick = () => {
-    count -= 1;
-    hp.innerHTML = `${count}`;
+function countdownMinus(event: any) {
+  let contElem = event.target.parentElement.parentElement;
+  let id = contElem.getAttribute("id");
+  minus(id);
+}
 
-    if (count <= 0) {
-      div1.style.display = "none";
-    }
+function countupPlus(event: any) {
+  let contElem = event.target.parentElement.parentElement;
+  let id = contElem.getAttribute("id");
+  plus(id);
+}
+
+function minus(p_id: any) {
+  let parElem = document.getElementById(p_id);
+  let countMinus = parElem!.firstElementChild!.nextElementSibling!
+    .firstElementChild;
+
+  let span = countMinus!.nextElementSibling;
+  let count = parseFloat(span!.innerHTML);
+
+  count -= 1;
+  span!.innerHTML = `${count}`;
+
+  if (count <= 0) {
+    parElem!.style.display = "none";
+  }
+}
+
+function plus(p_id: any) {
+  let parElem = document.getElementById(p_id);
+  let countPlus = parElem!.firstElementChild!.nextElementSibling!
+    .firstElementChild!.nextElementSibling!.nextElementSibling;
+
+  let span = countPlus!.previousElementSibling;
+  let count = parseFloat(span!.innerHTML);
+  count += 1;
+  span!.innerHTML = `${count}`;
+}
+
+//Speech Synthesis
+const wrapper = document.querySelectorAll<HTMLElement>(".wrapper");
+wrapper.forEach((el) => {
+  el.onclick = () => {
+    sElem(event);
   };
+});
 
-  const countup = document.querySelector<HTMLElement>(".plus");
-  var count = parseInt(getQuantitiyInput);
-  countup!.onclick = () => {
-    count += 1;
-    hp.innerHTML = `${count}`;
-  };
-  //Speech Synthesis
-  const message = new SpeechSynthesisUtterance(
-    "Liebe Oma in deinem Gefrierschrank befinden sich " + count + getNameInput
+function sElem(event: any) {
+  let id = event.target.getAttribute("id");
+  messageBuild(id);
+}
+
+function messageBuild(p_id: any) {
+  let elem = document.getElementById(p_id);
+  let span1 = elem!.firstElementChild!.firstElementChild;
+  let inputName = span1!.innerHTML;
+  let span2 = elem!.firstElementChild!.nextElementSibling!.firstElementChild!
+    .nextElementSibling;
+  let count = span2!.innerHTML;
+
+  let message = new SpeechSynthesisUtterance(
+    "Liebe Oma in deinem Gefrierschrank befinden sich " + count + inputName
   );
-  //const voices = window.speechSynthesis.getVoices();
+
+  console.log(message);
+
   message.lang = "de-DE";
 
-  const wrapper = document.querySelectorAll<HTMLElement>(".wrapper");
-  wrapper.forEach((el) => {
-    el.onclick = () => {
-      speakText();
-    };
-  });
+  speakText(message);
+}
 
-  // Speak text
-  function speakText() {
-    speechSynthesis.speak(message);
-  }
+// Speak text
+function speakText(message: any) {
+  speechSynthesis.speak(message);
 }
